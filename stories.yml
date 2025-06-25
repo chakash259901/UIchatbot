@@ -1,0 +1,60 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+- story: order food flow
+  steps:
+  - intent: order_food
+  - action: utter_ask_order_details
+- story: confirm food order
+  steps:
+  - intent: order_food
+  - slot_was_set:
+      - food_item: "zinger burger"
+  - action: utter_confirm_order
+- story: track order flow
+  steps:
+    - intent: track_order
+    - action: utter_ask_order_id
+    - intent: track_order
+    - action: action_track_order
+- story: product recommendation flow
+  steps:
+    - intent: recommend_product
+    - action: action_recommend_product
+- story: handle complaint
+  steps:
+    - intent: complain
+    - action: utter_ask_complaint_details
+    - intent: complain
+    - action: action_log_complaint
+- story: escalate to human
+  steps:
+    - intent: escalate
+    - action: utter_human_escalation
